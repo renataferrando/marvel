@@ -8,7 +8,7 @@ const Comics = () => {
 
     const {id} = useParams()
     const { data: comic, isLoading } = useFetch(
-      `/comics/${id}?${process.env.REACT_APP_APY_KEY}`
+      `${process.env.REACT_APP_API_URL}comics/${id}?${process.env.REACT_APP_APY_KEY}`
     );
   
     return (

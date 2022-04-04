@@ -17,7 +17,7 @@ const Header = ({ comics, series }) => {
     
     return (
         <div className='header'>
-            <img className={!isMobile ? "logo" : "logo --mobile"} src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/1200px-Marvel_Logo.svg.png' onClick={()=> navigate("/")}/>
+            <img className={!isMobile ? "logo" : "logo --mobile"} src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/1200px-Marvel_Logo.svg.png' onClick={()=> navigate("/marvel")}/>
             <nav>
                 <a className='nav-links' onClick={()=>setComicsOpen(true)} comics>COMICS</a>
                 <Drawer className="list" isOpen={comicsOpen || seriesOpen} onClose={handleClose} position="left" width={!isMobile ? "desktop" : "mobile"} closeBtn={true} positionCloseRight>        
@@ -42,7 +42,7 @@ const Header = ({ comics, series }) => {
                     </div>
                     )}
                 </Drawer>        
-                <a className='nav-links' onClick={()=> navigate("/")}>CHARACTERS</a>
+                <a className='nav-links' onClick={()=> navigate("/marvel")}>CHARACTERS</a>
                 <a onClick={()=>setSeriesOpen(true)} className='nav-links' >SERIES</a>
             </nav>
         </div>

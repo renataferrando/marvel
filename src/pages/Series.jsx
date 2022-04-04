@@ -7,7 +7,7 @@ import Loading from '../components/loading/Loading';
 const Series = () => {
     const {id} = useParams()
     const { data: series, isLoading } = useFetch(
-      `/series/${id}?${process.env.REACT_APP_APY_KEY}`
+      `${process.env.REACT_APP_API_URL}series/${id}?${process.env.REACT_APP_APY_KEY}`
     );
 
     return (

@@ -8,7 +8,7 @@ const SingleCharacter = () => {
 
     const {id} = useParams()
     const { data: character, isLoading } = useFetch(
-      `/characters/${id}?${process.env.REACT_APP_APY_KEY}`
+      `${process.env.REACT_APP_API_URL}characters/${id}?${process.env.REACT_APP_APY_KEY}`
     );
 
     return (

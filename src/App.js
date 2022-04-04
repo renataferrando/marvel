@@ -12,7 +12,7 @@ function App() {
   const [query, setQuery] = useState();
 
   const { data: characters, isLoading: all } = useFetch(
-    `https://gateway.marvel.com:443/v1/public/characters?${process.env.REACT_APP_APY_KEY}`
+    `${process.env.REACT_APP_API_URL}characters?${process.env.REACT_APP_APY_KEY}`
   );
 
   const {
@@ -20,10 +20,14 @@ function App() {
     isLoading: filtered,
     abortControllerSignal,
   } = useFetch(
-    `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}${process.env.REACT_APP_APY_KEY}`
+    `${process.env.REACT_APP_API_URL}characters?nameStartsWith=${query}${process.env.REACT_APP_APY_KEY}`
   );
-  const { data: comics } = useFetch(`/comics?${process.env.REACT_APP_APY_KEY}`);
-  const { data: series } = useFetch(`/series?${process.env.REACT_APP_APY_KEY}`);
+  const { data: comics } = useFetch(
+    `${process.env.REACT_APP_API_URL}comics?${process.env.REACT_APP_APY_KEY}`
+  );
+  const { data: series } = useFetch(
+    `${process.env.REACT_APP_API_URL}series?${process.env.REACT_APP_APY_KEY}`
+  );
 
   return (
     <BrowserRouter>
@@ -31,7 +35,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path="/"
+            path="/marvel"
             element={
               <AllCharacters
                 character={!query ? characters : filterCharacters}
