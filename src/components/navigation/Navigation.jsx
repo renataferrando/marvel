@@ -7,10 +7,10 @@ const Navigation = ({isOpen, onClose, className, comicsOpen, seriesOpen, width, 
     const navigate = useNavigate()
     return (
         <Drawer className={className} isOpen={isOpen} onClose={onClose} position="left" width={width} closeBtn={true} positionCloseRight>
-           
             {comicsOpen && 
             (<div>
                 <h4>COMICS</h4>
+                <input type="text" />
                 {
                 comics.map(({title, id}) => (
                     <li className='list-items' onClick={()=> navigate(`/comics/${id}`) & onClose()} key={id} >{[title]}</li>
