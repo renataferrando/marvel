@@ -1,7 +1,31 @@
+
+body {
+  background-color: #282c34;
+  box-sizing: border-box;
+ 
+}
 .App {
   text-align: center;
+  
+}
+::-webkit-scrollbar {
+  width: 10px;
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #202329;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #202329;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
