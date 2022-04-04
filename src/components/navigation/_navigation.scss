@@ -1,0 +1,19 @@
+.list {
+    padding: 50px 20px 0;
+    .list-items {
+      color: #fff;
+      list-style: none;
+      font-size: 12px;
+      margin: 5px;
+      cursor: pointer;
+      padding: 12px;
+      &:last-child {
+        margin-bottom: 80px;
+      }
+      &:hover {
+        background-color: #e62429;
+        border-radius: 4px;
+      }
+  
+    }
+  }

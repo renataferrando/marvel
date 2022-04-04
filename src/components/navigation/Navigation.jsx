@@ -1,7 +1,7 @@
 import React from 'react';
 import Drawer from '../drawer/Drawer';
 import { useNavigate } from 'react-router-dom';
-
+import './_navigation.scss'
 
 const Navigation = ({isOpen, onClose, className, comicsOpen, seriesOpen, width, comics, series}) => {
     const navigate = useNavigate()
