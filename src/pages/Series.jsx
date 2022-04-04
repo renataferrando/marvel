@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ComicDetails from '../components/comicDetails/EditionDetails';
+import SeriesDetails from '../components/comicDetails/EditionDetails';
 import useFetch from '../components/hooks/useFetch';
 import Loading from '../components/loading/Loading';
 
@@ -14,7 +14,7 @@ const Series = () => {
         <div>
         {isLoading && <Loading/>}
         {series.map(series => (
-            <ComicDetails
+            <SeriesDetails
                 key={series.id}
                 title={series.title} 
                 image={series.thumbnail.path + "." + series.thumbnail.extension}
