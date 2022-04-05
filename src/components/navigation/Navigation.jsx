@@ -30,7 +30,7 @@ const Navigation = ({
                 <input placeholder="Search comic" type="text" onChange={(e)=>searchComics(e.target.value)} />
                 {
                 comicsData.map(({title, id}) => (
-                    <li className='list-items' onClick={()=> navigate(`/comics/${id}`) & searchComics("a") & onClose()} key={id} >{[title]}</li>
+                    <li className='list-items' onClick={()=> navigate(`/comics/${id}`) & onClose()} key={id} >{[title]}</li>
                 ))
                 }
             </div>
@@ -41,7 +41,7 @@ const Navigation = ({
                 <input type="text" placeholder="Search serie" onChange={(e)=>searchSeries(e.target.value)} />
                 {
                 seriesData.map(({title, id}) => (
-                    <li className='list-items' onClick={()=> navigate(`/series/${id}`) & searchSeries("a") & onClose()} key={id} >{[title]}</li>
+                    <li className='list-items' onClick={()=> navigate(`/series/${id}`) & onClose()} key={id} >{[title]}</li>
                 ))
                 }
             </div>

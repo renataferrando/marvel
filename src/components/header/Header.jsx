@@ -9,6 +9,7 @@ const Header = ({ comicsData, seriesData, searchComics, searchSeries, comicsLoad
     const isMobile = width < 768
     const [comicsOpen, setComicsOpen] = useState()
     const [seriesOpen, setSeriesOpen] = useState()
+    
     const handleClose = () => {
         setSeriesOpen(false)
         setComicsOpen(false)
