@@ -12,6 +12,8 @@ const Header = ({ comicsData, seriesData, searchComics, searchSeries, comicsLoad
     const handleClose = () => {
         setSeriesOpen(false)
         setComicsOpen(false)
+        searchComics("a")
+        searchSeries("a")
     }
     const navigate = useNavigate()
     

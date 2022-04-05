@@ -14,9 +14,12 @@ const Navigation = ({
     seriesData, 
     searchComics, 
     searchSeries,
-    comicsLoading
+    comicsLoading,
+    
 }) => {
     const navigate = useNavigate()
+
+    
     return (
         <Drawer className="list" isOpen={isOpen} onClose={onClose} position="left" width={width} closeBtn={true} positionCloseRight>
             {comicsOpen && 
