@@ -1,5 +1,17 @@
 .list {
     padding: 50px 20px 0;
+    input {
+      margin: 10px 0;
+      height: 20px;
+      width: 150px;
+      background-color: #202329;
+      border: thin solid #ccc;
+      color: #ccc;
+      padding: 4px;
+      &:focus {
+        outline: none;
+  }
+    }
     .list-items {
       color: #fff;
       list-style: none;

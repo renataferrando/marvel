@@ -9,40 +9,44 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useFetch from "./components/hooks/useFetch";
 
 function App() {
-  const [query, setQuery] = useState();
+  const [charactersQuery, setCharactersQuery] = useState("a");
+  const [comicsQuery, setComicsQuery] = useState("a");
+  const [seriesQuery, setSeriesQuery] = useState("a");
 
   const { data: characters, isLoading: all } = useFetch(
-    `${process.env.REACT_APP_API_URL}characters?${process.env.REACT_APP_APY_KEY}`
+    `${process.env.REACT_APP_API_URL}characters?nameStartsWith=${charactersQuery}${process.env.REACT_APP_APY_KEY}`
   );
 
   const {
-    data: filterCharacters,
-    isLoading: filtered,
-    abortControllerSignal,
+    data: comics,
+    isLoading: comicsLoading,
+    error: comicsError,
   } = useFetch(
-    `${process.env.REACT_APP_API_URL}characters?nameStartsWith=${query}${process.env.REACT_APP_APY_KEY}`
+    `${process.env.REACT_APP_API_URL}comics?titleStartsWith=${comicsQuery}${process.env.REACT_APP_APY_KEY}`
   );
-  const { data: comics } = useFetch(
-    `${process.env.REACT_APP_API_URL}comics?${process.env.REACT_APP_APY_KEY}`
-  );
-  const { data: series } = useFetch(
-    `${process.env.REACT_APP_API_URL}series?${process.env.REACT_APP_APY_KEY}`
+  const { data: series, isLoading: seriesLoading } = useFetch(
+    `${process.env.REACT_APP_API_URL}series?titleStartsWith=${seriesQuery}${process.env.REACT_APP_APY_KEY}`
   );
 
   return (
     <BrowserRouter>
-      <Layout comics={comics} series={series}>
+      <Layout
+        comicsData={comics}
+        seriesData={series}
+        searchComics={setComicsQuery}
+        searchSeries={setSeriesQuery}
+        comicsLoading={comicsLoading}
+      >
         <Routes>
           <Route
             exact
             path="/marvel"
             element={
               <AllCharacters
-                character={!query ? characters : filterCharacters}
-                search={(q) => setQuery(q)}
-                isLoading={!query ? all : filtered}
-                results={query}
-                onClick={() => abortControllerSignal()}
+                character={characters}
+                search={setCharactersQuery}
+                isLoading={all}
+                results={charactersQuery}
               />
             }
           />
