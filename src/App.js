@@ -42,7 +42,6 @@ function App() {
                 search={(q) => setQuery(q)}
                 isLoading={!query ? all : filtered}
                 results={query}
-                onClick={() => abortControllerSignal()}
               />
             }
           />
