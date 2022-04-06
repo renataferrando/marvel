@@ -36,6 +36,7 @@ function App() {
         searchComics={setComicsQuery}
         searchSeries={setSeriesQuery}
         comicsLoading={comicsLoading}
+        seriesLoading={seriesLoading}
       >
         <Routes>
           <Route

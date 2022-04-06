@@ -4,12 +4,12 @@ import useWindowSize from '../hooks/useWindowSize';
 import Navigation from '../navigation/Navigation';
 import './_header.scss'
 
-const Header = ({ comicsData, seriesData, searchComics, searchSeries, comicsLoading }) => {
+const Header = ({ comicsData, seriesData, searchComics, searchSeries, comicsLoading, seriesLoading }) => {
     const [height, width] = useWindowSize()
     const isMobile = width < 768
     const [comicsOpen, setComicsOpen] = useState()
     const [seriesOpen, setSeriesOpen] = useState()
-    
+
     const handleClose = () => {
         setSeriesOpen(false)
         setComicsOpen(false)
@@ -34,6 +34,7 @@ const Header = ({ comicsData, seriesData, searchComics, searchSeries, comicsLoad
                     searchComics={searchComics}
                     searchSeries={searchSeries}
                     comicsLoading={comicsLoading}
+                    seriesLoading={seriesLoading}
                 />
                 <a className='nav-links' onClick={()=> navigate("/marvel")}>CHARACTERS</a>
                 <a onClick={()=>setSeriesOpen(true)} className='nav-links' >SERIES</a>

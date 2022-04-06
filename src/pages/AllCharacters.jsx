@@ -5,13 +5,13 @@ import Loading from '../components/loading/Loading'
 import './_all-characters.scss'
 
 
-const AllCharacters = ({ character, search, isLoading, results }) => {
+const AllCharacters = ({ character, search, isLoading, results, value }) => {
     const navigate = useNavigate();
    
     return (
         <>
         <input className='search-bar' type="text" placeholder='Search character' onChange={(e)=>search(e.target.value)} />
-        {results !== "a" && <p className='search-results'>Search results for "{results}" <br/><span onClick={()=>window.location.reload()}>clean up filter</span></p>}
+        {results !== "a" && <p className='search-results'>Search results for "{results}" <br/><span onClick={()=>search("a")} >clean up filter</span></p>}
         <div className='wrapper'>
         {isLoading && <Loading/>}     
             <div className='grid'>

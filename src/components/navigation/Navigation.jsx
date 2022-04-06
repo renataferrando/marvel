@@ -15,6 +15,7 @@ const Navigation = ({
     searchComics, 
     searchSeries,
     comicsLoading,
+    seriesLoading,
     
 }) => {
     const navigate = useNavigate()
@@ -26,8 +27,8 @@ const Navigation = ({
             
             (<div>
                 <h4>COMICS</h4>
-                {comicsLoading && <Loading/>}
                 <input placeholder="Search comic" type="text" onChange={(e)=>searchComics(e.target.value)} />
+                {comicsLoading && <Loading/>}
                 {
                 comicsData.map(({title, id}) => (
                     <li className='list-items' onClick={()=> navigate(`/comics/${id}`) & onClose()} key={id} >{[title]}</li>
@@ -39,6 +40,7 @@ const Navigation = ({
             (<div>
                 <h4>SERIES</h4>
                 <input type="text" placeholder="Search serie" onChange={(e)=>searchSeries(e.target.value)} />
+                {seriesLoading && <Loading/>}
                 {
                 seriesData.map(({title, id}) => (
                     <li className='list-items' onClick={()=> navigate(`/series/${id}`) & onClose()} key={id} >{[title]}</li>
