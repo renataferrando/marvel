@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Drawer from '../drawer/Drawer';
 import { useNavigate } from 'react-router-dom';
 import './_navigation.scss'
 import Loading from '../loading/Loading';
+import { ApiContext } from '../../ApiContext';
 
 const Navigation = ({
     isOpen, 
@@ -10,16 +11,9 @@ const Navigation = ({
     comicsOpen, 
     seriesOpen, 
     width, 
-    comicsData, 
-    seriesData, 
-    searchComics, 
-    searchSeries,
-    comicsLoading,
-    seriesLoading,
-    
 }) => {
     const navigate = useNavigate()
-
+    const { comics, series, comicsLoading, seriesLoading, setComicsQuery, setSeriesQuery } = useContext(ApiContext)
     
     return (
         <Drawer className="list" isOpen={isOpen} onClose={onClose} position="left" width={width} closeBtn={true} positionCloseRight>
@@ -27,10 +21,10 @@ const Navigation = ({
             
             (<div>
                 <h4>COMICS</h4>
-                <input placeholder="Search comic" type="text" onChange={(e)=>searchComics(e.target.value)} />
+                <input placeholder="Search comic" type="text" onChange={(e)=>setComicsQuery(e.target.value)} />
                 {comicsLoading && <Loading/>}
                 {
-                comicsData.map(({title, id}) => (
+                comics.map(({title, id}) => (
                     <li className='list-items' onClick={()=> navigate(`/comics/${id}`) & onClose()} key={id} >{[title]}</li>
                 ))
                 }
@@ -39,10 +33,10 @@ const Navigation = ({
             {seriesOpen &&  
             (<div>
                 <h4>SERIES</h4>
-                <input type="text" placeholder="Search serie" onChange={(e)=>searchSeries(e.target.value)} />
+                <input type="text" placeholder="Search serie" onChange={(e)=>setSeriesQuery(e.target.value)} />
                 {seriesLoading && <Loading/>}
                 {
-                seriesData.map(({title, id}) => (
+                series.map(({title, id}) => (
                     <li className='list-items' onClick={()=> navigate(`/series/${id}`) & onClose()} key={id} >{[title]}</li>
                 ))
                 }
