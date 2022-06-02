@@ -1,42 +1,58 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ApiContext } from '../ApiContext';
-import CharacterCard from '../components/characterCard/CharacterCard'
-import Loading from '../components/loading/Loading'
-import './_all-characters.scss'
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
+import CharacterCard from "../components/characterCard/CharacterCard";
+import Loading from "../components/loading/Loading";
+import { useCharacters } from "../hooks/useCharacters";
+import Results from "../components/results/Results";
+import "./_all-characters.scss";
 
 const AllCharacters = () => {
-    const navigate = useNavigate();
-    const { characters, charactersLoading, setCharactersQuery, charactersQuery, } = useContext(ApiContext)
+  const {
+    characters,
+    loading,
+    currentPage,
+    setCurrentPage,
+    hasMore,
+    searchParams,
+  } = useCharacters();
 
-    return (
-        <>
-        <input 
-            className='search-bar' 
-            type="text" 
-            placeholder='Search character' 
-            onChange={(e)=>setCharactersQuery(e.target.value)} 
-        />
-        {charactersQuery !== "a" && 
-            <p className='search-results'>Search results for "{charactersQuery}" <br/>
-                <span onClick={()=>setCharactersQuery("a")} >clean up filter</span>
-            </p>}
-        <div className='wrapper'>
-            {charactersLoading && <Loading/>}     
-                <div className='grid'>
-                    {characters.map(character => (
-                        <CharacterCard 
-                            key={character.id} 
-                            name={character.name} 
-                            image={character.thumbnail.path + "." + character.thumbnail.extension}
-                            onClick={()=> navigate(`/${character.id}`)}
-                        />
-                    ))}
-                </div>
+  const navigate = useNavigate();
+
+  const [lastElement] = useInfiniteScroll(
+    hasMore,
+    loading,
+    currentPage,
+    setCurrentPage
+  );
+  const search = searchParams.get("nameStartsWith");
+
+  return (
+    <>
+      <div className="wrapper">
+        {search !== null && <Results />}
+        <div className="grid">
+          {characters.map((character, i) => (
+            <CharacterCard
+              key={i}
+              name={character.name}
+              image={
+                character.thumbnail.path + "." + character.thumbnail.extension
+              }
+              onClick={() => navigate(`/${character.id}`)}
+            />
+          ))}
         </div>
-        </>
-    );
+        {loading && <Loading />}
+
+        <div
+          style={{ minHeight: "100px" }}
+          ref={lastElement}
+          className="viewer"
+        ></div>
+      </div>
+    </>
+  );
 };
 
 export default AllCharacters;

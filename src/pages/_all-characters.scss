@@ -1,15 +1,4 @@
-.search-bar {
-  margin: 40px auto 0;
-  height: 30px;
-  width: 300px;
-  background-color: #202329;
-  border: thin solid #ccc;
-  color: #ccc;
-  padding: 4px;
-  &:focus {
-    outline: none;
-  }
-}
+
 .search-results {
   margin: 10px auto;
   color: #fff;
@@ -22,8 +11,11 @@
 }
 .wrapper {  
   display: flex;
+  flex-direction: column;
   padding: 40px;
   justify-content: center;
+  align-self: center;
+  max-width: 1200px;
   .navigation {
     display: flex;
     flex-direction: column;

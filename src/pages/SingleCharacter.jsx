@@ -1,37 +1,39 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import CharacterDetails from '../components/characterDetails/CharacterDetails';
-import Loading from '../components/loading/Loading';
-import useFetch
- from '../components/hooks/useFetch';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import getSingleCharacter from "../service/getSingleCharacter";
+import CharacterDetails from "../components/characterDetails/CharacterDetails";
+import Loading from "../components/loading/Loading";
+
 const SingleCharacter = () => {
+  const { id } = useParams();
+  const [singleCharacter, setSingleCharacter] = useState([]);
+  useEffect(() => {
+    getSingleCharacter(id).then((response) => {
+      setSingleCharacter(response.data.results);
+    });
+  });
 
-    const {id} = useParams()
-    const { data: character, isLoading } = useFetch(
-      `${process.env.REACT_APP_API_URL}characters/${id}?${process.env.REACT_APP_APY_KEY}`
-    );
-
-    return (
-      <div>
-        {isLoading && <Loading/>}
-          <div className='wrapper'>
-          {
-          character.map(character  => (
-              <CharacterDetails 
-              key={character.id}
-              className="character"
-              description={character.description}
-              name={character.name} 
-              image={character.thumbnail.path + "." + character.thumbnail.extension}
-              comics={character.comics.items} 
-              series={character.series.items} 
-              stories={character.stories.items}
-              />
-          ))
-          }
-          </div>
-        </div>
-    );
+  return (
+    <div>
+      {/* {isLoading && <Loading />} */}
+      <div className="wrapper">
+        {singleCharacter.map((character) => (
+          <CharacterDetails
+            key={character.id}
+            className="character"
+            description={character.description}
+            name={character.name}
+            image={
+              character.thumbnail.path + "." + character.thumbnail.extension
+            }
+            comics={character.comics.items}
+            series={character.series.items}
+            stories={character.stories.items}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default SingleCharacter;

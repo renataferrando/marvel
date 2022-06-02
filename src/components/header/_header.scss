@@ -1,15 +1,21 @@
 .header {
   display: flex;
-  flex-direction: column;
+  // flex-direction: in+;
+  justify-content: space-around;
   align-items: center;
   background-color: #151515;
   padding: 12px;
- 
 
   .logo {
     width: 150px;
-    margin: 0 0 15px;
+
     cursor: pointer;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
   .nav-links {
     color: #fff;
@@ -19,12 +25,23 @@
     font-size: 12px; 
     font-weight: bold;
     cursor: pointer;
+
     &:first-child {
       border-left: thin solid  #fff ;
     }
+ 
     &:hover {
       opacity: 80%;
     }
   }
+  @media only screen and (max-width: 768px){
+    flex-direction: column;
+    nav {
+      flex-wrap: wrap;
+      margin-top: 20px;
+      gap: 10px;
+    }
+  }
+  
 }
 

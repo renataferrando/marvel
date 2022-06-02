@@ -1,0 +1,33 @@
+.search {
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    .input {
+        position: relative;
+    }
+      .search-bar {
+    height: 18px;
+    width: 150px;
+    background-color: #202329;
+    border: thin solid #ccc;
+    border-radius: 4px;
+    left: 10%;
+    color: #ccc;
+    padding: 4px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .icon {
+      display: flex;
+      background-color: #013078;
+      padding: 5.5px 7px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-radius:0 4px 4px 0;
+      border: solid 1px #ccc;
+      cursor: pointer;
+  }
+
+}
