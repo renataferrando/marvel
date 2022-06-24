@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import CharactersContext from "../../context/CharactersContext";
+import ApiContext from "../../context/ApiContext";
 import Icon from "./Icon";
 import "./_search.scss";
 
 const Search = () => {
-  const { searchParams, setSearchParams } = useContext(CharactersContext);
+  const { searchParams, setSearchParams } = useContext(ApiContext);
   const [searchText, setSearchText] = useState("");
 
   const handleSubmit = (e) => {

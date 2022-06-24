@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
 import Navigation from "../navigation/Navigation";
 import Search from "../search/Search";
-import CharactersContext from "../../context/CharactersContext";
 
-// import { ApiContext } from "../../ApiContext";
 import "./_header.scss";
 
 const Header = () => {
@@ -14,19 +12,12 @@ const Header = () => {
   const [comicsOpen, setComicsOpen] = useState();
   const [seriesOpen, setSeriesOpen] = useState();
 
-  const { setCharacters, setCurrentPage } = useContext(CharactersContext);
-
   const handleClose = () => {
     setSeriesOpen(false);
     setComicsOpen(false);
-    // setComicsQuery("a");
-    // setSeriesQuery("a");
   };
   const navigate = useNavigate();
-
   const handleInit = () => {
-    // setCharacters([]);
-    // setCurrentPage(0);
     navigate("/marvel");
   };
 

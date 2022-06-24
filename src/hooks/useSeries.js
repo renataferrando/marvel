@@ -1,10 +1,11 @@
-import getCharacters from "../service/getCharacters";
+import getSeries from "../service/getSeries";
 import { useEffect, useContext, useState } from "react";
 import ApiContext from "../context/ApiContext";
 
-export function useCharacters() {
-  const { characters, setCharacters, searchParams, setSearchParams } =
+export function useSeries() {
+  const { series, setSeries, seriesQuery, setSeriesQuery } =
     useContext(ApiContext);
+
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -14,11 +15,11 @@ export function useCharacters() {
 
   useEffect(() => {
     setLoading(true);
-    getCharacters(limit, offset, searchParams).then((response) => {
+    getSeries(limit, offset, seriesQuery).then((response) => {
       if (currentPage === 0) {
-        setCharacters(response.data.results);
+        setSeries(response.data.results);
       } else {
-        setCharacters((prev) => [...prev, ...response.data.results]);
+        setSeries((prev) => [...prev, ...response.data.results]);
       }
       setHasMore(true);
       if (response.data.results.length === 0) {
@@ -26,22 +27,22 @@ export function useCharacters() {
       }
       setLoading(false);
     });
-  }, [offset, searchParams]);
+  }, [offset, seriesQuery]);
 
   useEffect(() => {
-    setCharacters([]);
+    setSeries([]);
     setCurrentPage(0);
-  }, [searchParams]);
+  }, [seriesQuery]);
 
   return {
-    characters,
-    setCharacters,
+    series,
+    setSeries,
     loading,
     setLoading,
     setCurrentPage,
     currentPage,
     hasMore,
-    searchParams,
-    setSearchParams,
+    seriesQuery,
+    setSeriesQuery,
   };
 }

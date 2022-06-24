@@ -15,6 +15,7 @@ const AllCharacters = () => {
     setCurrentPage,
     hasMore,
     searchParams,
+    setSearchParams,
   } = useCharacters();
 
   const navigate = useNavigate();
@@ -26,11 +27,15 @@ const AllCharacters = () => {
     setCurrentPage
   );
   const search = searchParams.get("nameStartsWith");
+  const handleReset = () => {
+    searchParams.delete("nameStartsWith");
+    setSearchParams(searchParams);
+  };
 
   return (
     <>
       <div className="wrapper">
-        {search !== null && <Results />}
+        {search !== null && <Results query={search} clear={handleReset} />}
         <div className="grid">
           {characters.map((character, i) => (
             <CharacterCard

@@ -1,9 +1,9 @@
-import getCharacters from "../service/getCharacters";
+import getComics from "../service/getComics";
 import { useEffect, useContext, useState } from "react";
 import ApiContext from "../context/ApiContext";
 
-export function useCharacters() {
-  const { characters, setCharacters, searchParams, setSearchParams } =
+export function useComics() {
+  const { comics, setComics, comicsQuery, setComicsQuery } =
     useContext(ApiContext);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
@@ -14,11 +14,11 @@ export function useCharacters() {
 
   useEffect(() => {
     setLoading(true);
-    getCharacters(limit, offset, searchParams).then((response) => {
+    getComics(limit, offset, comicsQuery).then((response) => {
       if (currentPage === 0) {
-        setCharacters(response.data.results);
+        setComics(response.data.results);
       } else {
-        setCharacters((prev) => [...prev, ...response.data.results]);
+        setComics((prev) => [...prev, ...response.data.results]);
       }
       setHasMore(true);
       if (response.data.results.length === 0) {
@@ -26,22 +26,22 @@ export function useCharacters() {
       }
       setLoading(false);
     });
-  }, [offset, searchParams]);
+  }, [offset, comicsQuery]);
 
   useEffect(() => {
-    setCharacters([]);
+    setComics([]);
     setCurrentPage(0);
-  }, [searchParams]);
+  }, [comicsQuery]);
 
   return {
-    characters,
-    setCharacters,
+    comics,
+    setComics,
+    comicsQuery,
+    setComicsQuery,
     loading,
     setLoading,
     setCurrentPage,
     currentPage,
     hasMore,
-    searchParams,
-    setSearchParams,
   };
 }

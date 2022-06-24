@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import CharactersContext from "../../context/CharactersContext";
 import "./_results.scss";
 
-const Results = () => {
-  const { searchParams } = useContext(CharactersContext);
-  const query = searchParams.get("nameStartsWith");
+const Results = ({ query, clear }) => {
   return (
     <div className="results">
-      <span>Results for:</span> <span className="query">{query}</span>
+      <span>Results for:</span> "<span className="query">{query}</span>"
+      <p className="clear" onClick={clear}>
+        Clear filter
+      </p>
     </div>
   );
 };
